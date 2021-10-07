@@ -1,1 +1,1 @@
-# Logika-project
+This project for logikaschool
