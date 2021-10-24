@@ -39,7 +39,7 @@ ResultGroupBox.setLayout(layout_line2)
 tf = QLabel("Правильно/Неправильно")
 res = QLabel("Ответ:")
 layout_line2.addWidget(tf, alignment=(Qt.AlignLeft | Qt.AlignTop))
-layout_line2.addWidget(tf, alignment=(Qt.AlignCenter), stretch=2)
+layout_line2.addWidget(res, alignment=(Qt.AlignCenter), stretch=2)
 ResultGroupBox.setLayout(layout_line2)
 layout_line1 = QHBoxLayout()
 layout_line2 = QHBoxLayout()
@@ -75,6 +75,11 @@ def show_question():
     rbtn_3.setChecked(False)
     rbtn_4.setChecked(False)
     ButtonGroup.setExclusive(True)
+    lb_q.setText("Сколько будет 12*5-10+6")
+    rbtn_1.setText("36")
+    rbtn_2.setText("84")
+    rbtn_3.setText("56")
+    rbtn_4.setText("12")
 
 def test():
     if 'Ответить' == btn_OK.text():
@@ -85,5 +90,6 @@ def test():
 btn_OK.clicked.connect(test)
 
 window.setLayout(layout_card)
+window.setWindowTitle('Memory Card')
 window.show()
 app.exec_()
