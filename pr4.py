@@ -37,7 +37,7 @@ ResultGroupBox = QGroupBox("Результат ответов:")
 layout_line2 = QVBoxLayout()
 ResultGroupBox.setLayout(layout_line2)
 tf = QLabel("Правильно/Неправильно")
-res = QLabel("Ответ:")
+res = QLabel()
 layout_line2.addWidget(tf, alignment=(Qt.AlignLeft | Qt.AlignTop))
 layout_line2.addWidget(res, alignment=(Qt.AlignCenter), stretch=2)
 ResultGroupBox.setLayout(layout_line2)
@@ -59,8 +59,24 @@ layout_card.addLayout(layout_line2, stretch=8)
 layout_card.addStretch(1)
 layout_card.addLayout(layout_line3, stretch=1)
 layout_card.addStretch(1)
+ia = 0
+
+def true_variant():
+    if lb_q.text() == "Сколько будет 1000-7":
+        variant = [rbtn_1, rbtn_2, rbtn_3, rbtn_4]
+        if variant[3].isChecked():
+            res.setText("Правильно")
+        else:
+            res.setText(f"Неправильно, правильный ответ: {variant[3].text()}")
+    else:
+        variant = [rbtn_1, rbtn_2, rbtn_3, rbtn_4]
+        if variant[2].isChecked():
+            res.setText("Правильно")
+        else:
+            res.setText(f"Неправильно, правильный ответ: {variant[2].text()}")
 
 def ok():
+    true_variant()
     RadioGroupBox.hide()
     ResultGroupBox.show()
     btn_OK.setText("Следущий вопрос")
@@ -82,10 +98,22 @@ def show_question():
     rbtn_4.setText("12")
 
 def test():
+    global ia
     if 'Ответить' == btn_OK.text():
         ok()
     else:
         show_question()
+
+    if ia == 3:
+        ResultGroupBox.hide()
+        NextGroupBox = QGroupBox("Результат ответов:")
+        layout_line = QVBoxLayout()
+        NextGroupBox.setLayout(layout_line)
+        label_next = QLabel("Тест Завершен")
+        layout_line.addWidget(label_next)
+        NextGroupBox.setLayout(layout_line)
+        layout_line.addWidget(NextGroupBox)
+    ia += 1
 
 btn_OK.clicked.connect(test)
 
