@@ -1,5 +1,6 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QWidget, QHBoxLayout, QVBoxLayout, QGroupBox, QRadioButton, QPushButton, QLabel, QButtonGroup
+import sys
 
 app = QApplication([])
 window = QWidget()
@@ -105,14 +106,10 @@ def test():
         show_question()
 
     if ia == 3:
-        ResultGroupBox.hide()
-        NextGroupBox = QGroupBox("Результат ответов:")
-        layout_line = QVBoxLayout()
-        NextGroupBox.setLayout(layout_line)
-        label_next = QLabel("Тест Завершен")
-        layout_line.addWidget(label_next)
-        NextGroupBox.setLayout(layout_line)
-        layout_line.addWidget(NextGroupBox)
+        sys.exit()
+        
+    elif ia == 2:
+        btn_OK.setText("Закрыть тест")
     ia += 1
 
 btn_OK.clicked.connect(test)
