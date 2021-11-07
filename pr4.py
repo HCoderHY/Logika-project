@@ -83,7 +83,7 @@ def true_variant():
         else:
             tf.setText("Неправильно")
             res.setText(f"Правильный ответ: {variant[3].text()}")
-    else:
+    elif lb_q.text() == "Сколько будет 12*5-10+6":
         variant = [rbtn_1, rbtn_2, rbtn_3, rbtn_4]
         if variant[2].isChecked():
             tf.setText("Правильно")
@@ -92,6 +92,24 @@ def true_variant():
         else:
             tf.setText("Неправильно")
             res.setText(f"Правильный ответ: {variant[2].text()}")
+    elif lb_q.text() == "В Америке говорят на ...":
+        variant = [rbtn_1, rbtn_2, rbtn_3, rbtn_4]
+        if variant[3].isChecked():
+            tf.setText("Правильно")
+            res.setText(variant[3].text())
+            grade += 50
+        else:
+            tf.setText("Неправильно")
+            res.setText(f"Правильный ответ: {variant[3].text()}")
+    elif lb_q.text() == "Сколько будет 150+150+200":
+        variant = [rbtn_1, rbtn_2, rbtn_3, rbtn_4]
+        if variant[0].isChecked():
+            tf.setText("Правильно")
+            res.setText(variant[0].text())
+            grade += 50
+        else:
+            tf.setText("Неправильно")
+            res.setText(f"Правильный ответ: {variant[0].text()}")
 
 def ok():
     true_variant()
@@ -109,11 +127,24 @@ def show_question():
     rbtn_3.setChecked(False)
     rbtn_4.setChecked(False)
     ButtonGroup.setExclusive(True)
-    lb_q.setText("Сколько будет 12*5-10+6")
-    rbtn_1.setText("36")
-    rbtn_2.setText("84")
-    rbtn_3.setText("56")
-    rbtn_4.setText("12")
+    if lb_q.text() == "Сколько будет 1000-7":
+        lb_q.setText("Сколько будет 12*5-10+6")
+        rbtn_1.setText("36")
+        rbtn_2.setText("84")
+        rbtn_3.setText("56")
+        rbtn_4.setText("12")
+    elif lb_q.text() == "Сколько будет 12*5-10+6":
+        lb_q.setText("В Америке говорят на ...")
+        rbtn_1.setText("Армянском")
+        rbtn_2.setText("Американском")
+        rbtn_3.setText("Китайском")
+        rbtn_4.setText("Англиском")
+    elif lb_q.text() == "В Америке говорят на ...":
+        lb_q.setText("Сколько будет 150+150+200")
+        rbtn_1.setText("500")
+        rbtn_2.setText("250")
+        rbtn_3.setText("300")
+        rbtn_4.setText("100")
 
 def statistics():
     global grade
@@ -122,7 +153,7 @@ def statistics():
     StatisticsGroupBox.show()
     lb_q.setText("-Опрос Окончен-")
     btn_OK.setText("Закрыть Программу")
-    res2.setText(f"Ваш бал {str(grade)}/100")
+    res2.setText(f"Ваш бал {str(grade)}/200")
 
 
 def test():
@@ -132,11 +163,11 @@ def test():
     else:
         show_question()
 
-    if ia == 3:
+    if ia == 7:
         statistics() 
-    elif ia == 2:
+    elif ia == 6:
         btn_OK.setText("Стастистика")
-    elif ia == 4:
+    elif ia == 8:
         exit()
     ia += 1
 
